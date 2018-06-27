@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphQLEntities\HobbyInputType.cs" />
+    <Compile Include="GraphQLEntities\HobbyMutation.cs" />
     <Compile Include="GraphQLEntities\HobbyQuery.cs" />
     <Compile Include="GraphQLEntities\HobbyQuerySchema.cs" />
     <Compile Include="QueryResolver.cs" />

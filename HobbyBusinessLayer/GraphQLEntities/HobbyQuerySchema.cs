@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL;
+using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace HobbyBusinessLayer.GraphQLEntities
 {
     public class HobbyQuerySchema:Schema
     {
-        
+        public HobbyQuerySchema(IDependencyResolver resolve)
+        {
+            Query = resolve.Resolve<HobbyQuery>();
+        }
     }
 }

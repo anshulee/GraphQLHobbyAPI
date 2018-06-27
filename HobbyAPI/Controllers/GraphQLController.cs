@@ -8,17 +8,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Results;
 
 namespace HobbyAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("graphql")]
     public class GraphQLController : ApiController
     {
-        private readonly ISchema _schema;
-        private readonly IDocumentExecuter _executer;
-        private readonly IDocumentWriter _writer;
-        private readonly IDictionary<string, string> _namedQueries;
+       
         public OkResult Options()
         {
 
@@ -27,7 +26,8 @@ namespace HobbyAPI.Controllers
         [System.Web.Mvc.HttpPost]
         public async Task<IHttpActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new Schema { Query = new HobbyQuery()};
+            
+            var schema = new Schema { Query = new HobbyQuery(), Mutation=new  HobbyMutation()};
             var inputs = query.Variables.ToInputs();
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {

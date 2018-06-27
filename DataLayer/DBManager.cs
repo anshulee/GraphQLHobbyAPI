@@ -28,5 +28,13 @@ namespace DataLayer
             HobbyDBEntities dbContext = new HobbyDBEntities();
             return dbContext.Hobbies.Where(x => x.HobbyID == hobbyID).FirstOrDefault();
         }
+
+        public Hobby AddHobby(Hobby hobby)
+        {
+            HobbyDBEntities dbContext = new HobbyDBEntities();
+            dbContext.Hobbies.Add(hobby);
+            dbContext.SaveChanges();
+            return hobby;
+        }
     }
 }
