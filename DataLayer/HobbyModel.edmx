@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HobbyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyID" />
+          </Key>
+          <Property Name="HobbyID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonHobbyMapper">
+          <Key>
+            <PropertyRef Name="MappingID" />
+          </Key>
+          <Property Name="MappingID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="HobbyID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PersonHobbyMapper_Hobby">
+          <End Role="Hobby" Type="Self.Hobby" Multiplicity="1" />
+          <End Role="PersonHobbyMapper" Type="Self.PersonHobbyMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hobby">
+              <PropertyRef Name="HobbyID" />
+            </Principal>
+            <Dependent Role="PersonHobbyMapper">
+              <PropertyRef Name="HobbyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonHobbyMapper_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonHobbyMapper" Type="Self.PersonHobbyMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonHobbyMapper">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HobbyDBModelStoreContainer">
+          <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonHobbyMapper" EntityType="Self.PersonHobbyMapper" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PersonHobbyMapper_Hobby" Association="Self.FK_PersonHobbyMapper_Hobby">
+            <End Role="Hobby" EntitySet="Hobby" />
+            <End Role="PersonHobbyMapper" EntitySet="PersonHobbyMapper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonHobbyMapper_Person" Association="Self.FK_PersonHobbyMapper_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonHobbyMapper" EntitySet="PersonHobbyMapper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HobbyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyID" />
+          </Key>
+          <Property Name="HobbyID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PersonHobbyMappers" Relationship="Self.FK_PersonHobbyMapper_Hobby" FromRole="Hobby" ToRole="PersonHobbyMapper" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PersonHobbyMappers" Relationship="Self.FK_PersonHobbyMapper_Person" FromRole="Person" ToRole="PersonHobbyMapper" />
+        </EntityType>
+        <EntityType Name="PersonHobbyMapper">
+          <Key>
+            <PropertyRef Name="MappingID" />
+          </Key>
+          <Property Name="MappingID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="HobbyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hobby" Relationship="Self.FK_PersonHobbyMapper_Hobby" FromRole="PersonHobbyMapper" ToRole="Hobby" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_PersonHobbyMapper_Person" FromRole="PersonHobbyMapper" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_PersonHobbyMapper_Hobby">
+          <End Role="Hobby" Type="Self.Hobby" Multiplicity="1" />
+          <End Role="PersonHobbyMapper" Type="Self.PersonHobbyMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hobby">
+              <PropertyRef Name="HobbyID" />
+            </Principal>
+            <Dependent Role="PersonHobbyMapper">
+              <PropertyRef Name="HobbyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonHobbyMapper_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonHobbyMapper" Type="Self.PersonHobbyMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonHobbyMapper">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HobbyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hobbies" EntityType="Self.Hobby" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="PersonHobbyMappers" EntityType="Self.PersonHobbyMapper" />
+          <AssociationSet Name="FK_PersonHobbyMapper_Hobby" Association="Self.FK_PersonHobbyMapper_Hobby">
+            <End Role="Hobby" EntitySet="Hobbies" />
+            <End Role="PersonHobbyMapper" EntitySet="PersonHobbyMappers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonHobbyMapper_Person" Association="Self.FK_PersonHobbyMapper_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="PersonHobbyMapper" EntitySet="PersonHobbyMappers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HobbyDBModelStoreContainer" CdmEntityContainer="HobbyDBEntities">
+          <EntitySetMapping Name="Hobbies">
+            <EntityTypeMapping TypeName="HobbyDBModel.Hobby">
+              <MappingFragment StoreEntitySet="Hobby">
+                <ScalarProperty Name="HobbyID" ColumnName="HobbyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="HobbyDBModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonHobbyMappers">
+            <EntityTypeMapping TypeName="HobbyDBModel.PersonHobbyMapper">
+              <MappingFragment StoreEntitySet="PersonHobbyMapper">
+                <ScalarProperty Name="MappingID" ColumnName="MappingID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="HobbyID" ColumnName="HobbyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
