@@ -21,5 +21,10 @@ namespace HobbyBusinessLayer
             DBManager manager = new DBManager();
             return manager.GetPerson(personID);
         }
+        public static Hobby GetHobby(int hobbyID)
+        {
+            DBManager manager = new DBManager();
+            return manager.GetHobby(hobbyID);
+        }
     }
 }
