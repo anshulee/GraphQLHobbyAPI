@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0135f90b681f4a47bbe2b152285ea9b1" Name="Diagram1">
-        <EntityTypeShape EntityType="HobbyDBModel.Hobby" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HobbyDBModel.Person" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HobbyDBModel.PersonHobbyMapper" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="HobbyDBModel.FK_PersonHobbyMapper_Hobby" ManuallyRouted="false" />
-        <AssociationConnector Association="HobbyDBModel.FK_PersonHobbyMapper_Person" ManuallyRouted="false" />
+      <Diagram DiagramId="a4bc5ca4455347af9d7415c97669f173" Name="Diagram1">
+        <EntityTypeShape EntityType="HobbyDBEntities.Hobby" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HobbyDBEntities.Person" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HobbyDBEntities.PersonHobbyMapper" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="HobbyDBEntities.FK_PersonHobbyMapper_Hobby" ManuallyRouted="false" />
+        <AssociationConnector Association="HobbyDBEntities.FK_PersonHobbyMapper_Person" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

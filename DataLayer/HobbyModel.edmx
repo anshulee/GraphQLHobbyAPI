@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HobbyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HobbyDBEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Hobby">
           <Key>
             <PropertyRef Name="HobbyID" />
           </Key>
-          <Property Name="HobbyID" Type="int" Nullable="false" />
+          <Property Name="HobbyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="300" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
@@ -25,7 +25,7 @@
           <Key>
             <PropertyRef Name="MappingID" />
           </Key>
-          <Property Name="MappingID" Type="int" Nullable="false" />
+          <Property Name="MappingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonID" Type="int" Nullable="false" />
           <Property Name="HobbyID" Type="int" Nullable="false" />
         </EntityType>
@@ -53,7 +53,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HobbyDBModelStoreContainer">
+        <EntityContainer Name="HobbyDBEntitiesStoreContainer">
           <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonHobbyMapper" EntityType="Self.PersonHobbyMapper" Schema="dbo" store:Type="Tables" />
@@ -66,15 +66,16 @@
             <End Role="PersonHobbyMapper" EntitySet="PersonHobbyMapper" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HobbyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HobbyDBEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Hobby">
           <Key>
             <PropertyRef Name="HobbyID" />
           </Key>
-          <Property Name="HobbyID" Type="Int32" Nullable="false" />
+          <Property Name="HobbyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="PersonHobbyMappers" Relationship="Self.FK_PersonHobbyMapper_Hobby" FromRole="Hobby" ToRole="PersonHobbyMapper" />
         </EntityType>
@@ -82,7 +83,7 @@
           <Key>
             <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -92,7 +93,7 @@
           <Key>
             <PropertyRef Name="MappingID" />
           </Key>
-          <Property Name="MappingID" Type="Int32" Nullable="false" />
+          <Property Name="MappingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonID" Type="Int32" Nullable="false" />
           <Property Name="HobbyID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hobby" Relationship="Self.FK_PersonHobbyMapper_Hobby" FromRole="PersonHobbyMapper" ToRole="Hobby" />
@@ -122,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HobbyDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HobbyDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Hobbies" EntityType="Self.Hobby" />
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="PersonHobbyMappers" EntityType="Self.PersonHobbyMapper" />
@@ -140,9 +141,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HobbyDBModelStoreContainer" CdmEntityContainer="HobbyDBEntities">
+        <EntityContainerMapping StorageEntityContainer="HobbyDBEntitiesStoreContainer" CdmEntityContainer="HobbyDBEntities1">
           <EntitySetMapping Name="Hobbies">
-            <EntityTypeMapping TypeName="HobbyDBModel.Hobby">
+            <EntityTypeMapping TypeName="HobbyDBEntities.Hobby">
               <MappingFragment StoreEntitySet="Hobby">
                 <ScalarProperty Name="HobbyID" ColumnName="HobbyID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -150,7 +151,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="HobbyDBModel.Person">
+            <EntityTypeMapping TypeName="HobbyDBEntities.Person">
               <MappingFragment StoreEntitySet="Person">
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -160,7 +161,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonHobbyMappers">
-            <EntityTypeMapping TypeName="HobbyDBModel.PersonHobbyMapper">
+            <EntityTypeMapping TypeName="HobbyDBEntities.PersonHobbyMapper">
               <MappingFragment StoreEntitySet="PersonHobbyMapper">
                 <ScalarProperty Name="MappingID" ColumnName="MappingID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
