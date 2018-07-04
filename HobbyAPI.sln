@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyAPI", "HobbyAPI\HobbyAPI.csproj", "{E3ABAA50-84D4-4CA0-9317-D8F26FF30B3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D5FA5746-AE27-4FCD-942B-4719AF896A84}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyBusinessLayer", "HobbyBusinessLayer\HobbyBusinessLayer.csproj", "{8CEFEA0B-0DB0-4895-AC71-4CB013983E86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyDataLayer", "HobbyDataLayer\HobbyDataLayer.csproj", "{8D24B0D1-DE9E-4582-86D6-5153DF75DC03}"
@@ -21,10 +19,6 @@ Global
 		{E3ABAA50-84D4-4CA0-9317-D8F26FF30B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3ABAA50-84D4-4CA0-9317-D8F26FF30B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3ABAA50-84D4-4CA0-9317-D8F26FF30B3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5FA5746-AE27-4FCD-942B-4719AF896A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5FA5746-AE27-4FCD-942B-4719AF896A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5FA5746-AE27-4FCD-942B-4719AF896A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5FA5746-AE27-4FCD-942B-4719AF896A84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CEFEA0B-0DB0-4895-AC71-4CB013983E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CEFEA0B-0DB0-4895-AC71-4CB013983E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CEFEA0B-0DB0-4895-AC71-4CB013983E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
