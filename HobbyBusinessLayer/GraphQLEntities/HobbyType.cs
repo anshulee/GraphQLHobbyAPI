@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using GraphQL.Types;
+using HobbyDataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace HobbyBusinessLayer.GraphQLEntities
         {
             Field(x => x.HobbyID).Description("Hobby ID");
             Field(x => x.Name).Description("Hobby Name");
-            Field("PopularityCount", x=>x.PersonHobbyMappers.Count, nullable:true).Description("Count of people with this hobby");
+            Field<IntGraphType>("PopularityCount", resolve: context => QueryResolver.GetPopularityCountForHobby(context.Source.HobbyID), description: "Count of people with this hobby");
         }
 
     }

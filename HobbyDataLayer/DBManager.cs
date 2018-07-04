@@ -17,6 +17,11 @@ namespace DataLayer
             return hobbies.ToList();
         }
 
+        public int GetCountOfPeopleInterestedInHobby(int hobbyID)
+        {
+            HobbyDBContext dbContext = new HobbyDBContext();
+            return dbContext.Hobbies.Include("Hobbies").Where(h => h.HobbyID == hobbyID).Select(h => h.People).FirstOrDefault().Count();
+        }
         public Person GetPerson(int personID)
         {
             HobbyDBContext dbContext = new HobbyDBContext();

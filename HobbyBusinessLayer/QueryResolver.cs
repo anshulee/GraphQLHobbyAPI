@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using HobbyDataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace HobbyBusinessLayer
             DBManager manager = new DBManager();
             return manager.GetHobbiesForPerson(personID);
 
+        }
+        public static int GetPopularityCountForHobby(int hobbyID)
+        {
+            DBManager manager = new DBManager();
+            return manager.GetCountOfPeopleInterestedInHobby(hobbyID);
         }
 
         public static Person GetPerson(int personID)
