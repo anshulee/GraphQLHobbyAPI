@@ -38,7 +38,7 @@ The api exposes a simple Person-Hobby system with the following relationship
 ![Database diagram](http://cennest.com/weblog/wp-content/uploads/2018/07/hobbyDB.png)
 
 The Schema allows for the following operations
-1.Query Person by ID ( allows nested queries to get person’s hobbies)
+1. Query Person by ID ( allows nested queries to get person’s hobbies)
 ![Query Person](http://cennest.com/weblog/wp-content/uploads/2018/07/queryPerson.png)
 
 2.	Query Hobby by ID ( Including get count of people interested in that hobby)
@@ -64,7 +64,8 @@ We finally used the fork at https://github.com/mattferrin/graphiql to get this w
 
 ![update url](http://cennest.com/weblog/wp-content/uploads/2018/07/qraphiql.png)
 9. **“npm start”**
-10. Navigate to localhost:8080 and explore the schema
+10.  Navigate to localhost:8080 and explore the schema
+
 
 ## Tutorial
 What is shown here is simply how to connect the various pieces. However if someone needs specific steps please ping me at anshulee@cennest.com and i'll write up a tutorial
