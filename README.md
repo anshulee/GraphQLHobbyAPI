@@ -34,6 +34,38 @@ We played with various samples and demos and then build out a simple demo app sh
   *(Pretty much the only .NET framework example we got and most useful!)*
 
 ## Functioning
-
 The api exposes a simple Person-Hobby system with the following relationship
+![Database diagram](http://cennest.com/weblog/wp-content/uploads/2018/07/hobbyDB.png)
+
+The Schema allows for the following operations
+1.Query Person by ID ( allows nested queries to get person’s hobbies)
+![Query Person](http://cennest.com/weblog/wp-content/uploads/2018/07/queryPerson.png)
+
+2.	Query Hobby by ID ( Including get count of people interested in that hobby)
+![Query Hobby](http://cennest.com/weblog/wp-content/uploads/2018/07/queryHobby.png)
+
+3.	Create new Hobby  (Mutation)
+![Create Hobby](http://cennest.com/weblog/wp-content/uploads/2018/07/createHobby.png)
+
+## Using Graphiql
+The nuget at  https://www.nuget.org/packages/graphiql/  is made for .NET Core and does not work with the standard .NET framework.
+We tried using the Graphiql repo at https://github.com/graphql/graphiql   directly but it had some issues building on a windows machine.(https://github.com/graphql/graphiql/issues/318) .
+
+We finally used the fork at https://github.com/mattferrin/graphiql to get this working on a Windows Machine. 
+### Steps were as under
+1.	Clone repo from https://github.com/mattferrin/graphiql
+2.	Install Yarn from https://yarnpkg.com/en/docs/install#windows-stable
+3.	Open Command Prompt and Navigate to main project
+4.	Use **“Yarn Install”** to install all dependencies
+5.	**“npm run build”** on the parent directory
+6.	Navigate to Example directory
+7.	**“npm install”**
+8.	Update function graphQLFetcher in example/index.html to hit the HobbyAPIServer  
+
+![update url](http://cennest.com/weblog/wp-content/uploads/2018/07/qraphiql.png)
+9. **“npm start”**
+10. Navigate to localhost:8080 and explore the schema
+
+## Tutorial
+What is shown here is simply how to connect the various pieces. However if someone needs specific steps please ping me at anshulee@cennest.com and i'll write up a tutorial
 
