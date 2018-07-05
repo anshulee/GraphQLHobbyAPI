@@ -17,9 +17,9 @@ We played with various samples and demos and then build out a simple demo app sh
 * Visual Studio Code
 
 ## This example showcases
-- [x]	Basic parameterized Queries 
+- [x] Parameterized Queries 
 - [x]	Nested Queries
-- [x]	Basic parameterized Mutations
+- [x]	Parameterized Mutations
 - [ ]	Does NOT use Dependency Injection
 
 
