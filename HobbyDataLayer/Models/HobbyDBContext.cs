@@ -11,7 +11,7 @@ namespace HobbyDataLayer.Models
     {
         public HobbyDBContext():base("HobbyDBEF")
         {
-            
+            Database.SetInitializer<HobbyDBContext>(new DatabaseInitializer());
         }
         public DbSet<Hobby> Hobbies { get; set; }
         public DbSet<Person> Persons { get; set; }
